@@ -1,0 +1,95 @@
+<form
+  #loginForm="ngForm"
+  class="auth-card"
+  [class.auth-card--error]="hasCredentialsError()"
+  (ngSubmit)="login(loginForm)"
+  novalidate
+>
+  <div class="auth-card__heading">
+    <h2>Welcome back</h2>
+    <p>Log in to access your billing dashboard.</p>
+  </div>
+
+  <div class="auth-card__fields">
+    <label class="app-field" [class.app-field--error]="showFieldError(loginForm, 'email') || hasCredentialsError()" for="email">
+      <span class="app-field__label">Email Address</span>
+      <span class="app-control app-control--with-icon">
+        <img
+          class="app-control__icon"
+          [src]="showFieldError(loginForm, 'email') || hasCredentialsError() ? 'assets/auth/mail-error.svg' : 'assets/auth/mail-blue.svg'"
+          alt=""
+          width="16"
+          height="16"
+        />
+        <input
+          id="email"
+          name="email"
+          type="email"
+          class="app-control__input"
+          autocomplete="email"
+          placeholder="Enter your email address"
+          required
+          email
+          [(ngModel)]="email"
+        />
+      </span>
+      @if (showFieldError(loginForm, 'email')) {
+        @if (loginForm.controls['email'].errors?.['required']) {
+          <span class="app-field__message">Email address is required.</span>
+        } @else if (loginForm.controls['email'].errors?.['email']) {
+          <span class="app-field__message">Enter a valid email address.</span>
+        }
+      }
+    </label>
+
+    <label class="app-field" [class.app-field--error]="showFieldError(loginForm, 'password') || hasCredentialsError()" for="password">
+      <span class="app-field__label">Password</span>
+      <span class="app-control app-control--with-icon app-control--with-action">
+        <img
+          class="app-control__icon"
+          [src]="showFieldError(loginForm, 'password') || hasCredentialsError() ? 'assets/auth/lock-error.svg' : 'assets/auth/lock-muted.svg'"
+          alt=""
+          width="16"
+          height="16"
+        />
+        <input
+          id="password"
+          name="password"
+          [type]="showPassword ? 'text' : 'password'"
+          class="app-control__input"
+          autocomplete="current-password"
+          [placeholder]="hasCredentialsError() ? '' : 'Enter your password'"
+          required
+          minlength="8"
+          [(ngModel)]="password"
+        />
+        <button
+          class="app-control__action"
+          type="button"
+          (click)="togglePassword()"
+          aria-label="Toggle password visibility"
+        >
+          <img
+            [src]="showFieldError(loginForm, 'password') || hasCredentialsError() ? 'assets/eye-error.svg' : showPassword ? 'assets/eye-grey.svg' : 'assets/eye-off-muted.svg'"
+            alt=""
+            width="16"
+            height="16"
+          />
+        </button>
+      </span>
+      @if (showFieldError(loginForm, 'password')) {
+        @if (loginForm.controls['password'].errors?.['required']) {
+          <span class="app-field__message">Password is required.</span>
+        } @else if (loginForm.controls['password'].errors?.['minlength']) {
+          <span class="app-field__message">Password must be at least 8 characters.</span>
+        }
+      } @else if (hasCredentialsError()) {
+        <span class="app-field__message">Email or Password is incorrect!</span>
+      }
+    </label>
+  </div>
+
+  <button class="app-button app-button--primary" type="submit" [disabled]="loginForm.invalid">Log In</button>
+
+  <a class="auth-card__link" href="#" aria-label="Forgot password">Forgot Password?</a>
+</form>

@@ -1,0 +1,43 @@
+<main class="auth-shell">
+  <section class="auth-shell__brand" aria-label="CareMatrix RCM">
+    <div class="auth-shell__grid" aria-hidden="true"></div>
+    <img
+      class="auth-shell__circle auth-shell__circle--top"
+      src="assets/auth/bg-circle-1.svg"
+      alt=""
+      aria-hidden="true"
+      width="260"
+      height="260"
+    />
+    <div class="auth-shell__rect" aria-hidden="true"></div>
+    <img
+      class="auth-shell__circle auth-shell__circle--bottom"
+      src="assets/auth/bg-circle-2.svg"
+      alt=""
+      aria-hidden="true"
+      width="280"
+      height="280"
+    />
+
+    <div class="auth-shell__content">
+      <div class="auth-shell__heading-group">
+        <img class="brand-logo" src="assets/logo.svg" alt="CareMatrix" width="211" height="60" />
+
+        <h1 class="auth-shell__title">
+          <span>Revenue Cycle Management</span>
+          <span>Simplified.</span>
+        </h1>
+      </div>
+
+      <p class="auth-shell__copy">
+        Modern billing workflows, clear visibility, and confident cash flow - built for healthcare teams.
+      </p>
+    </div>
+  </section>
+
+  <section class="auth-shell__panel">
+    <div class="auth-shell__card-area">
+      <router-outlet />
+    </div>
+  </section>
+</main>

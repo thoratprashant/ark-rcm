@@ -1,0 +1,26 @@
+:root {
+  --font-family-base: 'IBM Plex Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-size-display: 52px;
+}
+
+html,
+body {
+  font-family: var(--font-family-base);
+  font-optical-sizing: auto;
+}
+
+body {
+  color: var(--color-ink);
+}
+
+@media (max-width: 1199.98px) {
+  :root {
+    --font-size-display: 44px;
+  }
+}
+
+@media (max-width: 575.98px) {
+  :root {
+    --font-size-display: 34px;
+  }
+}
