@@ -19,6 +19,9 @@
 
 .auth-shell__brand {
   display: flex;
+  height: 100dvh;
+  flex: 0 0 50%;
+  align-self: flex-start;
   align-items: center;
   justify-content: center;
   padding: var(--auth-panel-padding);
@@ -145,6 +148,8 @@
   }
 
   .auth-shell__brand {
+    height: auto;
+    flex-basis: auto;
     min-height: 360px;
     padding: 48px 32px;
   }
