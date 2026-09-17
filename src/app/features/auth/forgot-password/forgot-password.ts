@@ -1,34 +1,24 @@
-import { Component, signal } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 
 @Component({
-  selector: 'app-login',
+  selector: 'app-forgot-password',
   imports: [FormsModule, RouterLink],
-  templateUrl: './login.html',
-  styleUrl: './login.scss',
+  templateUrl: './forgot-password.html',
+  styleUrl: './forgot-password.scss',
 })
-export class Login {
-  protected readonly hasCredentialsError = signal(false);
+export class ForgotPassword {
   protected submitted = false;
-  protected showPassword = false;
   protected email = '';
-  protected password = '';
 
-  protected login(form: NgForm): void {
+  protected sendResetLink(form: NgForm): void {
     this.submitted = true;
-    this.hasCredentialsError.set(false);
 
     if (form.invalid) {
       form.control.markAllAsTouched();
       return;
     }
-
-    this.hasCredentialsError.set(true);
-  }
-
-  protected togglePassword(): void {
-    this.showPassword = !this.showPassword;
   }
 
   protected showFieldError(form: NgForm, controlName: string): boolean {

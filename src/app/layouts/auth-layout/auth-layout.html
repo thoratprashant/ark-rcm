@@ -20,18 +20,19 @@
     />
 
     <div class="auth-shell__content">
-      <div class="auth-shell__heading-group">
-        <img class="brand-logo" src="assets/logo.svg" alt="CareMatrix" width="211" height="60" />
+      @if (content$ | async; as content) {
+        <div class="auth-shell__heading-group">
+          <img class="brand-logo" src="assets/logo.svg" alt="CareMatrix" width="211" height="60" />
 
-        <h1 class="auth-shell__title">
-          <span>Revenue Cycle Management</span>
-          <span>Simplified.</span>
-        </h1>
-      </div>
+          <h1 class="auth-shell__title">
+            @for (line of content.title; track line) {
+              <span>{{ line }}</span>
+            }
+          </h1>
+        </div>
 
-      <p class="auth-shell__copy">
-        Modern billing workflows, clear visibility, and confident cash flow - built for healthcare teams.
-      </p>
+        <p class="auth-shell__copy">{{ content.copy }}</p>
+      }
     </div>
   </section>
 
