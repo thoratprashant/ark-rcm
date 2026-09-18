@@ -1,0 +1,210 @@
+.login-flash {
+  position: fixed;
+  inset: 0;
+  z-index: 900;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 15% 12%, rgba(11, 92, 201, 0.28) 0 10%, transparent 26%),
+    radial-gradient(circle at 80% 78%, rgba(30, 158, 88, 0.16) 0 12%, transparent 30%),
+    linear-gradient(135deg, #071a38 0%, var(--color-brand-panel) 44%, #06152d 100%);
+  color: var(--color-white);
+  animation: login-flash-exit 560ms ease 2.25s forwards;
+}
+
+.login-flash::before {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(115deg, transparent 0 36%, rgba(255, 255, 255, 0.07) 46%, transparent 56%),
+    radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.08), transparent 44%);
+  content: '';
+  opacity: 0;
+  transform: translateX(-18%);
+  animation: login-flash-sheen 1400ms ease 520ms forwards;
+}
+
+.login-flash__grid {
+  position: absolute;
+  inset: 0;
+  opacity: 0.08;
+  background-image:
+    linear-gradient(to right, rgba(255, 255, 255, 0.95) 2px, transparent 2px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.95) 2px, transparent 2px);
+  background-size: 120px 120px;
+  background-position: -72px 0;
+}
+
+.login-flash__circle,
+.login-flash__rect {
+  position: absolute;
+  pointer-events: none;
+}
+
+.login-flash__circle--top {
+  top: -80px;
+  left: -120px;
+  width: 260px;
+  height: 260px;
+  opacity: 0.92;
+  animation: login-flash-float 1800ms ease-in-out both;
+}
+
+.login-flash__circle--bottom {
+  right: -150px;
+  bottom: -130px;
+  width: 280px;
+  height: 280px;
+  opacity: 0.9;
+  animation: login-flash-float 1900ms ease-in-out 120ms both reverse;
+}
+
+.login-flash__rect {
+  top: 14%;
+  right: 19%;
+  width: min(32vw, 320px);
+  height: 160px;
+  border-radius: 28px;
+  background: rgba(11, 92, 201, 0.16);
+  animation: login-flash-panel 1500ms ease both;
+}
+
+.login-flash__brand {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  width: min(46.4vw, 368px);
+  max-width: calc(100vw - 40px);
+  align-items: center;
+  justify-content: center;
+}
+
+.login-flash__logo-wrap {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  clip-path: inset(0 70.5% 0 0);
+  filter: drop-shadow(0 24px 34px rgba(0, 0, 0, 0.28));
+  transform-origin: 14% 50%;
+  animation:
+    login-flash-logo-intro 720ms cubic-bezier(0.2, 0.9, 0.24, 1.16) both,
+    login-flash-logo-reveal 900ms cubic-bezier(0.22, 1, 0.36, 1) 680ms forwards,
+    login-flash-logo-settle 700ms ease 1.28s forwards;
+}
+
+.login-flash__logo {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+@keyframes login-flash-logo-intro {
+  0% {
+    opacity: 0;
+    transform: scale(0.76) translateY(12px);
+  }
+
+  66% {
+    opacity: 1;
+    transform: scale(1.06) translateY(0);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes login-flash-logo-reveal {
+  0% {
+    clip-path: inset(0 70.5% 0 0);
+  }
+
+  100% {
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+@keyframes login-flash-logo-settle {
+  0% {
+    transform: scale(1);
+  }
+
+  100% {
+    transform: scale(0.98);
+  }
+}
+
+@keyframes login-flash-sheen {
+  0% {
+    opacity: 0;
+    transform: translateX(-18%);
+  }
+
+  35% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0.54;
+    transform: translateX(18%);
+  }
+}
+
+@keyframes login-flash-panel {
+  from {
+    opacity: 0;
+    transform: translate3d(22px, -12px, 0) scale(0.96);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+}
+
+@keyframes login-flash-float {
+  from {
+    transform: translate3d(0, 18px, 0) scale(0.96);
+  }
+
+  to {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+}
+
+@keyframes login-flash-exit {
+  to {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+@media (max-width: 991.98px) {
+  .login-flash__brand {
+    width: min(56vw, 312px);
+  }
+}
+
+@media (max-width: 575.98px) {
+  .login-flash__brand {
+    width: min(62.4vw, 240px);
+  }
+
+  .login-flash__rect {
+    right: -80px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .login-flash,
+  .login-flash::before,
+  .login-flash__circle,
+  .login-flash__rect,
+  .login-flash__logo-wrap {
+    animation-duration: 1ms;
+    animation-delay: 0ms;
+  }
+}

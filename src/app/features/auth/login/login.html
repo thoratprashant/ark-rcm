@@ -1,3 +1,32 @@
+@if (showSplash()) {
+  <section class="login-flash" aria-label="CareMatrix loading">
+    <div class="login-flash__grid" aria-hidden="true"></div>
+    <div class="login-flash__rect" aria-hidden="true"></div>
+    <img
+      class="login-flash__circle login-flash__circle--top"
+      src="assets/auth/bg-circle-1.svg"
+      alt=""
+      aria-hidden="true"
+      width="260"
+      height="260"
+    />
+    <img
+      class="login-flash__circle login-flash__circle--bottom"
+      src="assets/auth/bg-circle-2.svg"
+      alt=""
+      aria-hidden="true"
+      width="280"
+      height="280"
+    />
+
+    <div class="login-flash__brand">
+      <div class="login-flash__logo-wrap">
+        <img class="login-flash__logo" src="assets/logo.svg" alt="CareMatrix" width="208" height="60" />
+      </div>
+    </div>
+  </section>
+}
+
 <form #loginForm="ngForm" class="auth-card" [class.auth-card--error]="hasCredentialsError()"
   (ngSubmit)="login(loginForm)" novalidate>
   <div class="auth-card__heading">
