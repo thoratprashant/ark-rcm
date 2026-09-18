@@ -1,0 +1,18 @@
+<section class="auth-card" aria-labelledby="account-locked-title">
+  <div class="auth-card__heading">
+    <h2 id="account-locked-title">Account Locked</h2>
+    <p>5 login attempts failed. Your account has been temporarily locked for security reasons.</p>
+  </div>
+
+  <div class="auth-timer" aria-live="polite">
+    <p class="auth-timer__label">Try again in:</p>
+    <div class="auth-timer__time" aria-label="{{ minutes() }} minutes and {{ seconds() }} seconds remaining">
+      <span class="auth-timer__unit">{{ minutes() }}</span>
+      <span class="auth-timer__separator">:</span>
+      <span class="auth-timer__unit">{{ seconds() }}</span>
+    </div>
+    <p class="auth-timer__caption">minutes : seconds</p>
+  </div>
+
+  <a class="app-button app-button--primary" routerLink="/auth/login">Log In</a>
+</section>

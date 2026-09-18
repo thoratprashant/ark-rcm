@@ -10,6 +10,7 @@
   font-weight: 700;
   line-height: normal;
   text-align: center;
+  text-decoration: none;
   white-space: nowrap;
   cursor: pointer;
   transition:
@@ -26,6 +27,10 @@
 
 .app-button--primary:hover {
   filter: brightness(1.04);
+}
+
+.app-button--primary:visited {
+  color: var(--color-white);
 }
 
 .app-button--primary:active {
