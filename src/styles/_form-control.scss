@@ -65,7 +65,7 @@
   outline: 0;
   padding: 0;
   background: transparent;
-  color: inherit;
+  color: var(--color-ink);
   font: inherit;
   font-size: 14px;
   line-height: normal;
@@ -74,7 +74,7 @@
 .app-control__input:-webkit-autofill,
 .app-control__input:-webkit-autofill:hover,
 .app-control__input:-webkit-autofill:focus {
-  -webkit-text-fill-color: currentColor;
+  -webkit-text-fill-color: var(--color-ink);
   transition: background-color 9999s ease-in-out 0s;
 }
 
