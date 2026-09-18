@@ -1,6 +1,7 @@
 import { Component, signal } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
 import { RouterLink } from '@angular/router';
+import { LoaderService } from '../../../shared/loader/loader.service';
 
 @Component({
   selector: 'app-login',
@@ -15,6 +16,8 @@ export class Login {
   protected email = '';
   protected password = '';
 
+  constructor(private readonly loader: LoaderService) {}
+
   protected login(form: NgForm): void {
     this.submitted = true;
     this.hasCredentialsError.set(false);
@@ -24,7 +27,12 @@ export class Login {
       return;
     }
 
-    this.hasCredentialsError.set(true);
+    this.loader.show();
+
+    window.setTimeout(() => {
+      this.loader.hide();
+      this.hasCredentialsError.set(true);
+    }, 500000);
   }
 
   protected togglePassword(): void {
