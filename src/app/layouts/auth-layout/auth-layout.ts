@@ -29,6 +29,7 @@ export class AuthLayout {
         return {
           title: String(title).split('|'),
           copy: String(copy),
+          compactContent: Boolean(childData?.['compactContent']),
         };
       }),
     );

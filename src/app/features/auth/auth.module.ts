@@ -31,6 +31,7 @@ const routes: Routes = [
         data: {
           title: 'Forgot Your Password',
           copy: "Enter your email address and we'll send you a reset link.",
+          compactContent: true,
         },
       },
       {
@@ -47,6 +48,7 @@ const routes: Routes = [
         data: {
           title: 'Session Expired',
           copy: 'You were logged out due to 30 minutes of inactivity. Any unsaved billing changes may have been discarded to protect patient records.',
+          compactContent: true,
         },
       },
       {

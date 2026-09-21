@@ -33,7 +33,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: var(--auth-panel-padding);
+  // padding: var(--auth-panel-padding);
   background: var(--color-app-bg);
 }
 
@@ -84,6 +84,10 @@
   width: 100%;
   flex-direction: column;
   gap: 56px;
+}
+
+.auth-shell__content--compact {
+  gap: 10px;
 }
 
 .auth-shell__heading-group {
@@ -162,6 +166,10 @@
   .auth-shell__content {
     gap: 32px;
   }
+
+  .auth-shell__content--compact {
+    gap: 10px;
+  }
 }
 
 @media (max-width: 575.98px) {
@@ -176,6 +184,10 @@
 
   .auth-shell__content {
     gap: 24px;
+  }
+
+  .auth-shell__content--compact {
+    gap: 10px;
   }
 
   .auth-shell__copy {

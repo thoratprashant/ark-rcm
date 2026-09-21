@@ -19,8 +19,8 @@
       height="280"
     />
 
-    <div class="auth-shell__content">
-      @if (content$ | async; as content) {
+    @if (content$ | async; as content) {
+      <div class="auth-shell__content" [class.auth-shell__content--compact]="content.compactContent">
         <div class="auth-shell__heading-group">
           <img class="brand-logo" src="assets/logo.svg" alt="CareMatrix" width="211" height="60" />
 
@@ -32,8 +32,8 @@
         </div>
 
         <p class="auth-shell__copy">{{ content.copy }}</p>
-      }
-    </div>
+      </div>
+    }
   </section>
 
   <section class="auth-shell__panel">
