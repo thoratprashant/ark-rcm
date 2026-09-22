@@ -1,5 +1,3 @@
-<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-<g id="chevron-right">
-<path id="Vector" d="M5.25 10.5L8.75 7L5.25 3.5" stroke="white" stroke-opacity="0.533333" stroke-width="2" stroke-linecap="round"/>
-</g>
+<svg width="11" height="7" viewBox="0 0 11 7" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M0.5 5.70703L5.5 0.707031L10.5 5.70703" stroke="#5C5C5C" stroke-linecap="round"/>
 </svg>

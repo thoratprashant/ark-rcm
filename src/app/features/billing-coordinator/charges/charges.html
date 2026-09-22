@@ -8,15 +8,200 @@
     </a>
   </nav>
 
-  <section class="billing-empty" aria-live="polite">
-    <div class="billing-empty__icon" aria-hidden="true">
-      <img src="assets/billing-coordinator/empty-clipboard.svg" alt="" width="24" height="24" />
-    </div>
-    <h2>Hi Sarah! Welcome aboard</h2>
-    <p>We'll notify you as soon as your first charge is available so you can get started.</p>
-    <button class="app-button app-button--primary billing-empty__button" type="button">
-      <img src="assets/billing-coordinator/refresh-cw.svg" alt="" width="16" height="16" aria-hidden="true" />
-      Refresh for New Charges
-    </button>
-  </section>
+  @if (!showListing()) {
+    <section class="billing-empty" aria-live="polite">
+      <div class="billing-empty__icon" aria-hidden="true">
+        <img src="assets/billing-coordinator/empty-clipboard.svg" alt="" width="24" height="24" />
+      </div>
+      <h2>Hi Sarah! Welcome aboard</h2>
+      <p>We'll notify you as soon as your first charge is available so you can get started.</p>
+      <button class="app-button app-button--primary billing-empty__button" type="button" (click)="showChargesListing()">
+        <img src="assets/billing-coordinator/refresh-cw.svg" alt="" width="16" height="16" aria-hidden="true" />
+        Refresh for New Charges
+      </button>
+    </section>
+  } @else {
+    <section class="charges-listing">
+      @if (showSyncWarning()) {
+        <div class="charges-sync-alert" role="status">
+          <span aria-hidden="true">!</span>
+          We're having trouble syncing with Athena. Data on this screen may be out of date.
+        </div>
+      }
+
+      <section class="charges-filters" [class.charges-filters--collapsed]="!filtersOpen()">
+        <button class="charges-filters__header" type="button" (click)="toggleFilters()" [attr.aria-expanded]="filtersOpen()">
+          <span>Filters</span>
+          <img src="assets/billing-coordinator/chevron-right.svg" alt="" width="14" height="14" />
+        </button>
+
+        <div class="charges-filters__body">
+          <label class="charges-filter">
+            <span>Date Range</span>
+            <mat-select class="billing-mat-select" panelClass="billing-select-panel" [(ngModel)]="dateRange">
+              <mat-option value="previous-week">Previous Week</mat-option>
+              <mat-option value="this-week">This Week</mat-option>
+              <mat-option value="this-month">This Month</mat-option>
+              <mat-option value="custom">Custom Range</mat-option>
+            </mat-select>
+          </label>
+
+          <label class="charges-filter">
+            <span>Rendering Physician</span>
+            <mat-select class="billing-mat-select" panelClass="billing-select-panel" [(ngModel)]="renderingPhysician">
+              <mat-option value="all-multi">All Physicians (Multi)</mat-option>
+              <mat-option value="jenkins">Dr. Sarah Jenkins, MD</mat-option>
+              <mat-option value="vance">Dr. Alan Vance, MD</mat-option>
+              <mat-option value="chen">Dr. Robert Chen, MD</mat-option>
+            </mat-select>
+          </label>
+
+          <label class="charges-filter">
+            <span>Supervising Physician</span>
+            <mat-select class="billing-mat-select" panelClass="billing-select-panel" [(ngModel)]="supervisingPhysician">
+              <mat-option value="all">All Physicians</mat-option>
+              <mat-option value="jenkins">Dr. Sarah Jenkins, MD</mat-option>
+              <mat-option value="vance">Dr. Alan Vance, MD</mat-option>
+            </mat-select>
+          </label>
+
+          <label class="charges-filter">
+            <span>Service Department</span>
+            <mat-select class="billing-mat-select" panelClass="billing-select-panel" [(ngModel)]="serviceDepartment">
+              <mat-option value="nephrology">Nephrology Clinic</mat-option>
+              <mat-option value="dialysis">Dialysis Center</mat-option>
+              <mat-option value="hospital">Hospital Rounding</mat-option>
+            </mat-select>
+          </label>
+
+          <label class="charges-filter">
+            <span>Patient Department</span>
+            <mat-select class="billing-mat-select" panelClass="billing-select-panel" [(ngModel)]="patientDepartment">
+              <mat-option value="dialysis">Dialysis Inpatient</mat-option>
+              <mat-option value="outpatient">Outpatient</mat-option>
+              <mat-option value="acute">Acute Care</mat-option>
+            </mat-select>
+          </label>
+
+          <label class="charges-filter">
+            <span>Procedure Codes</span>
+            <input type="text" [(ngModel)]="procedureCodes" />
+          </label>
+
+          <label class="charges-filter">
+            <span>Insurance Package ID</span>
+            <mat-select class="billing-mat-select" panelClass="billing-select-panel" [(ngModel)]="insurancePackage">
+              <mat-option value="all">All Insurances</mat-option>
+              <mat-option value="medicare">Medicare</mat-option>
+              <mat-option value="commercial">Commercial</mat-option>
+            </mat-select>
+          </label>
+
+          <label class="charges-filter">
+            <span>Net Activity / Net AR</span>
+            <input type="text" [(ngModel)]="netActivity" />
+          </label>
+
+          <button class="app-button app-button--primary charges-filters__apply" type="button">Apply Filters</button>
+        </div>
+      </section>
+
+      <section class="charges-table-shell">
+        <div class="charges-table-scroll">
+          <table mat-table matSort [dataSource]="dataSource" class="charges-table">
+            <ng-container matColumnDef="id">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>Charge ID</th>
+              <td mat-cell *matCellDef="let charge">
+                <div class="charge-id-cell">
+                  <strong>{{ charge.id }}</strong>
+                  @if (charge.unmatched) {
+                    <span>Unmatched</span>
+                  }
+                </div>
+              </td>
+            </ng-container>
+
+            <ng-container matColumnDef="dateOfService">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>Date of Service</th>
+              <td mat-cell *matCellDef="let charge">{{ charge.dateOfService }}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="renderingPhysician">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>Rendering Physician</th>
+              <td mat-cell *matCellDef="let charge">{{ charge.renderingPhysician }}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="chargeValue">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>Charge Value</th>
+              <td mat-cell *matCellDef="let charge">{{ charge.chargeValue | currency: 'USD' : 'symbol' : '1.2-2' }}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="status">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>Charge Status</th>
+              <td mat-cell *matCellDef="let charge">
+                <div class="charge-status-cell">
+                  <span class="charge-status" [class]="'charge-status charge-status--' + getStatusTone(charge.status)">
+                    {{ charge.status }}
+                  </span>
+                  @if (charge.statusNote) {
+                    <small>{{ charge.statusNote }}</small>
+                  }
+                </div>
+              </td>
+            </ng-container>
+
+            <ng-container matColumnDef="dateOfAdmission">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>Date of Admission</th>
+              <td mat-cell *matCellDef="let charge">{{ charge.dateOfAdmission }}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="actions">
+              <th mat-header-cell *matHeaderCellDef>Actions</th>
+              <td mat-cell *matCellDef="let charge">
+                <button class="charges-action-button" type="button" [matMenuTriggerFor]="chargeActions" [attr.aria-label]="'Actions for ' + charge.id">
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                </button>
+              </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns" [class.charges-table__row--muted]="row.status === 'Voided'"></tr>
+          </table>
+        </div>
+
+        <mat-menu #chargeActions="matMenu" panelClass="charges-action-menu" xPosition="before" yPosition="below">
+          <button mat-menu-item>
+            <img class="charges-menu-icon" src="assets/billing-coordinator/paid-outline.svg" alt="" width="16" height="16" />
+            <span>Mark Paid</span>
+          </button>
+          <button mat-menu-item>
+            <img class="charges-menu-icon" src="assets/billing-coordinator/refund.svg" alt="" width="16" height="16" />
+            <span>Log Refund</span>
+          </button>
+          <button mat-menu-item class="charges-menu-danger">
+            <img class="charges-menu-icon" src="assets/billing-coordinator/trash.svg" alt="" width="16" height="16" />
+            <span>Void Claim</span>
+          </button>
+          <button mat-menu-item>
+            <img class="charges-menu-icon" src="assets/billing-coordinator/clock.svg" alt="" width="16" height="16" />
+            <span>View History</span>
+          </button>
+        </mat-menu>
+
+        <div class="charges-table-footer">
+          <mat-paginator [length]="totalCharges" [pageSize]="7" [pageSizeOptions]="[7, 10, 25]" showFirstLastButtons aria-label="Charges pagination"></mat-paginator>
+
+          <div class="charges-export">
+            <mat-select class="billing-mat-select billing-mat-select--export" panelClass="billing-select-panel" value="csv" aria-label="Export format">
+              <mat-option value="csv">Export CSV</mat-option>
+              <mat-option value="xlsx">Export XLSX</mat-option>
+            </mat-select>
+            <button class="charges-export__button" type="button">Export</button>
+          </div>
+        </div>
+      </section>
+    </section>
+  }
 </div>
