@@ -1,0 +1,22 @@
+<div class="charges-page">
+  <nav class="billing-tabs" aria-label="Charges and claims">
+    <a routerLink="/billing-coordinator/charges" routerLinkActive="billing-tabs__link--active" class="billing-tabs__link">
+      Charges
+    </a>
+    <a routerLink="/billing-coordinator/claims" routerLinkActive="billing-tabs__link--active" class="billing-tabs__link">
+      Claims
+    </a>
+  </nav>
+
+  <section class="billing-empty" aria-live="polite">
+    <div class="billing-empty__icon" aria-hidden="true">
+      <img src="assets/billing-coordinator/empty-clipboard.svg" alt="" width="24" height="24" />
+    </div>
+    <h2>Hi Sarah! Welcome aboard</h2>
+    <p>We'll notify you as soon as your first charge is available so you can get started.</p>
+    <button class="app-button app-button--primary billing-empty__button" type="button">
+      <img src="assets/billing-coordinator/refresh-cw.svg" alt="" width="16" height="16" aria-hidden="true" />
+      Refresh for New Charges
+    </button>
+  </section>
+</div>

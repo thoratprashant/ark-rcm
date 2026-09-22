@@ -1,0 +1,72 @@
+<div class="bc-shell" [class.bc-shell--nav-open]="sidebarOpen()">
+  <button class="bc-shell__scrim" type="button" aria-label="Close menu" (click)="closeSidebar()"></button>
+
+  <aside class="bc-sidebar" aria-label="Billing Coordinator navigation">
+    <div class="bc-sidebar__brand">
+      <img src="assets/billing-coordinator/sidebar-brand.svg" alt="CareMatrix"  />
+    </div>
+
+    <nav class="bc-sidebar__nav" aria-label="Billing Coordinator sections">
+      @for (section of navSections; track section.title) {
+        <section class="bc-nav-section">
+          <h2>{{ section.title }}</h2>
+          @for (item of section.items; track item.label) {
+            <a
+              class="bc-nav-link"
+              [class.bc-nav-link--disabled]="!item.route"
+              [routerLink]="item.route || null"
+              routerLinkActive="bc-nav-link--active"
+              [routerLinkActiveOptions]="{ exact: false }"
+              (click)="item.route ? closeSidebar() : null"
+            >
+              <span class="bc-nav-link__icon" aria-hidden="true">
+                <img [src]="'assets/billing-coordinator/' + item.icon" alt="" width="14" height="14" />
+              </span>
+              <span class="bc-nav-link__label">{{ item.label }}</span>
+              @if (item.badge) {
+                <span class="bc-nav-link__badge" [class.bc-nav-link__badge--warning]="item.badgeTone === 'warning'">
+                  {{ item.badge }}
+                </span>
+              } @else if (item.arrow) {
+                <img class="bc-nav-link__arrow" src="assets/billing-coordinator/chevron-right.svg" alt="" width="14" height="14" />
+              }
+            </a>
+          }
+        </section>
+      }
+    </nav>
+
+    <footer class="bc-sidebar__profile">
+      <div class="bc-avatar">SM</div>
+      <div class="bc-sidebar__profile-meta">
+        <strong>Sarah Mitchell</strong>
+        <span>Billing Coordinator</span>
+      </div>
+      <button type="button" class="bc-sidebar__logout" aria-label="Log out">
+        <img src="assets/billing-coordinator/log-out.svg" alt="" width="14" height="14" />
+      </button>
+    </footer>
+  </aside>
+
+  <main class="bc-workspace">
+    <header class="bc-header">
+      <button class="bc-header__menu" type="button" aria-label="Open menu" (click)="toggleSidebar()">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <h1>{{ pageTitle$ | async }}</h1>
+      <div class="bc-header__profile">
+        <div class="bc-avatar">SM</div>
+        <div>
+          <strong>Sarah Mitchell</strong>
+          <span>Billing Coordinator</span>
+        </div>
+      </div>
+    </header>
+
+    <div class="bc-content">
+      <router-outlet />
+    </div>
+  </main>
+</div>
