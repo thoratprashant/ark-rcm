@@ -45,6 +45,11 @@
   filter: none;
 }
 
+.app-button--primary:disabled,
+.app-button--primary[disabled] {
+  background: #c6c6c6;
+}
+
 .app-button:disabled:active,
 .app-button[disabled]:active {
   transform: none;

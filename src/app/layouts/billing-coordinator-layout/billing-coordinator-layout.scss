@@ -33,9 +33,9 @@
  
 
 .bc-sidebar__nav {
-  flex: 1 1 auto;
+  flex: 1 1 0;
   min-height: 0;
-  margin: 12px 0;
+  margin: 12px 0 0;
   padding: 12px 16px 0 0;
   border-top: 1px solid rgba(255, 255, 255, 0.08);
   overflow-y: auto;
@@ -118,15 +118,6 @@
   color: #fcd34d;
 }
 
-.bc-sidebar__profile {
-  display: flex;
-  flex: 0 0 auto;
-  align-items: center;
-  gap: 10px;
-  padding: 12px 24px 0px 0;
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
-}
-
 .bc-avatar {
   display: inline-flex;
   width: 36px;
@@ -142,15 +133,6 @@
   font-weight: 600;
 }
 
-.bc-sidebar__profile-meta {
-  display: flex;
-  min-width: 0;
-  flex: 1 1 auto;
-  flex-direction: column;
-  gap: 2px;
-}
-
-.bc-sidebar__profile-meta strong,
 .bc-header__profile strong {
   overflow: hidden;
   font-size: 12px;
@@ -159,7 +141,6 @@
   white-space: nowrap;
 }
 
-.bc-sidebar__profile-meta span,
 .bc-header__profile span {
   overflow: hidden;
   color: rgba(165, 180, 252, 0.55);
@@ -167,12 +148,6 @@
   font-weight: 500;
   text-overflow: ellipsis;
   white-space: nowrap;
-}
-
-.bc-sidebar__logout {
-  border: 0;
-  padding: 0;
-  background: transparent;
 }
 
 .bc-workspace {

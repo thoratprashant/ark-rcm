@@ -319,13 +319,10 @@
 
 .charges-export__button {
   min-height: 36px;
-  border: 0;
+  width: auto;
   border-radius: 6px;
   padding: 0 20px;
-  background: #c6c6c6;
-  color: #ffffff;
   font-size: 13px;
-  font-weight: 700;
 }
 
 .charges-menu-icon {
@@ -342,24 +339,6 @@
 .charges-menu-danger,
 .charges-menu-danger .charges-menu-icon {
   color: #ef4444;
-}
-
-.charges-table-footer .mat-mdc-paginator {
-  background: transparent;
-}
-
-.charges-table-footer .mat-mdc-paginator-container {
-  min-height: 36px;
-  padding: 0;
-}
-
-.charges-table-footer .mat-mdc-paginator-page-size {
-  display: none;
-}
-
-.charges-table-footer .mat-mdc-paginator-range-label {
-  color: #64748b;
-  font-size: 13px;
 }
 
 .cdk-overlay-container {

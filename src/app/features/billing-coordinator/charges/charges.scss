@@ -1,3 +1,54 @@
 :host {
   display: block;
 }
+
+.charges-table-scroll {
+  scrollbar-color: rgba(100, 116, 139, 0.42) transparent;
+  scrollbar-width: thin;
+}
+
+.charges-table-shell table {
+  width: 100%;
+  min-width: 1160px;
+  table-layout: fixed;
+  background: #ffffff;
+}
+
+.charges-table-shell th,
+.charges-table-shell td {
+  overflow: hidden;
+}
+
+.charges-table-shell .mat-column-id {
+  width: 160px;
+  font-family: 'IBM Plex Mono', monospace;
+}
+
+.charges-table-shell .mat-column-dateOfService,
+.charges-table-shell .mat-column-dateOfAdmission {
+  width: 148px;
+  font-family: 'IBM Plex Mono', monospace;
+}
+
+.charges-table-shell .mat-column-renderingPhysician {
+  width: 250px;
+}
+
+.charges-table-shell .mat-column-chargeValue {
+  width: 144px;
+  font-feature-settings: 'tnum';
+}
+
+.charges-table-shell .mat-column-status {
+  width: 210px;
+}
+
+.charges-table-shell .mat-column-actions {
+  width: 92px;
+  text-align: center;
+}
+
+.charge-id-cell,
+.charge-status-cell {
+  min-width: 0;
+}

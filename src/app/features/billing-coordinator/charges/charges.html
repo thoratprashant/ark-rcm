@@ -108,7 +108,7 @@
 
       <section class="charges-table-shell">
         <div class="charges-table-scroll">
-          <table mat-table matSort [dataSource]="dataSource" class="charges-table">
+          <table mat-table matSort [dataSource]="dataSource">
             <ng-container matColumnDef="id">
               <th mat-header-cell *matHeaderCellDef mat-sort-header>Charge ID</th>
               <td mat-cell *matCellDef="let charge">
@@ -198,7 +198,7 @@
               <mat-option value="csv">Export CSV</mat-option>
               <mat-option value="xlsx">Export XLSX</mat-option>
             </mat-select>
-            <button class="charges-export__button" type="button">Export</button>
+            <button class="app-button app-button--primary charges-export__button" type="button" disabled>Export</button>
           </div>
         </div>
       </section>

@@ -1,132 +1,106 @@
-.charges-table-shell {
-  border-color: #d9e2ef;
-}
-
-.charges-table-scroll {
-  scrollbar-color: rgba(100, 116, 139, 0.42) transparent;
-  scrollbar-width: thin;
-}
-
-.charges-table {
+table.mat-mdc-table {
   --mat-table-background-color: #ffffff;
   font-family: var(--font-family-base);
 }
 
-.charges-table .mat-mdc-header-row {
+table.mat-mdc-table .mat-mdc-header-row {
   height: 44px;
   background: #edf2f7;
 }
 
-.charges-table .mat-mdc-row {
-  height: 52px;
-}
-
-.charges-table .mat-mdc-header-cell {
+table.mat-mdc-table .mat-mdc-header-cell {
   border-bottom: 1px solid #e2e8f0;
   background: #edf2f7;
-  color: #475569;
+  color: #64748B;
   font-family: var(--font-family-base);
   font-size: 11px;
   font-weight: 700;
   letter-spacing: 0;
+  padding-right: 8px;
+  padding-left: 8px;
   text-transform: uppercase;
 }
 
-.charges-table .mat-mdc-cell {
+table.mat-mdc-table .mat-mdc-cell {
   border-bottom-color: #eef2f6;
   color: #0c1626;
   font-family: var(--font-family-base);
   font-size: 13px;
   font-weight: 400;
+  padding-right: 8px;
+  padding-left: 8px;
 }
 
-.charges-table .mat-column-id,
-.charges-table .mat-column-dateOfService,
-.charges-table .mat-column-dateOfAdmission {
-  font-family: 'IBM Plex Mono', monospace;
-}
-
-.charges-table .mat-column-chargeValue {
-  font-feature-settings: 'tnum';
-}
-
-.charges-table .mat-sort-header-container {
+table.mat-mdc-table .mat-sort-header-container {
   align-items: center;
   gap: 4px;
 }
 
-.charges-table .mat-sort-header-arrow {
-  color: #64748b;
-  opacity: 1 !important;
+table.mat-mdc-table .mat-sort-header-content {
+  display: inline-flex;
+  align-items: center;
+  line-height: 16px;
 }
 
-.charges-table .mat-sort-header-stem {
+table.mat-mdc-table .mat-sort-header-arrow {
+  display: inline-flex;
+  width: 16px;
+  height: 16px;
+  align-items: center;
+  justify-content: center;
+  margin: 0 0 0 4px !important;
+  color: #64748b;
+  line-height: 1;
+  opacity: 1 !important;
+  overflow: visible;
+}
+
+table.mat-mdc-table .mat-sort-header-arrow > svg {
+  display: block;
+  position: static !important;
+  width: 16px !important;
+  height: 16px !important;
+  margin: 0 !important;
+  transform: none !important;
+}
+
+table.mat-mdc-table .mat-sort-header-stem {
   display: none;
 }
 
-.charges-table .mat-sort-header-indicator {
+table.mat-mdc-table .mat-sort-header-indicator {
   width: 8px;
   height: 8px;
   border-right: 2px solid currentColor;
   border-bottom: 2px solid currentColor;
 }
 
-.charges-table .mat-sort-header-pointer-left,
-.charges-table .mat-sort-header-pointer-right,
-.charges-table .mat-sort-header-pointer-middle {
+table.mat-mdc-table .mat-sort-header-pointer-left,
+table.mat-mdc-table .mat-sort-header-pointer-right,
+table.mat-mdc-table .mat-sort-header-pointer-middle {
   display: none;
 }
 
-.charges-table .mat-sort-header-sorted .mat-sort-header-content,
-.charges-table .mat-sort-header-sorted .mat-sort-header-arrow {
+table.mat-mdc-table .mat-sort-header-sorted .mat-sort-header-content,
+table.mat-mdc-table .mat-sort-header-sorted .mat-sort-header-arrow {
   color: var(--color-primary);
 }
 
-.charges-table-footer .mat-mdc-paginator {
-  flex: 1 1 auto;
+.mat-mdc-paginator {
   background: transparent;
 }
 
-.charges-table-footer .mat-mdc-paginator-container {
-  min-height: 36px;
-  justify-content: flex-start;
-  padding: 0;
+.mat-mdc-paginator-container {
+  min-height: unset !important;
+  padding: 0 !important;
 }
 
-.charges-table-footer .mat-mdc-paginator-page-size {
-  display: none;
+.mat-mdc-paginator-page-size {
+  display: none !important;
 }
 
-.charges-table-footer .mat-mdc-paginator-range-label {
-  margin: 0 20px 0 0;
+.mat-mdc-paginator-range-label {
   color: #64748b;
   font-size: 13px;
-}
-
-.charges-table-footer .mat-mdc-icon-button {
-  width: 36px;
-  height: 36px;
-  padding: 6px;
-  color: #0c1626;
-}
-
-.charges-table-footer .mat-mdc-icon-button[disabled] {
-  color: #94a3b8;
-}
-
-.charges-action-menu.mat-mdc-menu-panel {
-  min-width: 126px;
-  max-width: 126px;
-}
-
-.charges-menu-icon {
-  width: 16px;
-  height: 16px;
-  flex: 0 0 16px;
-  margin-right: 10px;
-}
-
-.charges-menu-danger,
-.charges-menu-danger .mat-mdc-menu-item-text {
-  color: #ef4444;
+  margin-left: 0 !important;
 }
