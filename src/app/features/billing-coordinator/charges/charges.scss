@@ -229,6 +229,57 @@
   text-align: center;
 }
 
+.charges-empty-table-cell {
+  height: 415px;
+  padding: 0;
+  border-bottom: 0;
+}
+
+.charges-loading-state,
+.charges-no-results {
+  display: flex;
+  min-height: 415px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  color: var(--color-muted);
+  text-align: center;
+}
+
+.charges-loading-state strong,
+.charges-no-results strong {
+  color: var(--color-ink);
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.charges-no-results span {
+  color: var(--color-muted);
+  font-size: 14px;
+}
+
+.charges-no-results__icon {
+  width: 48px;
+  height: 48px;
+  display: block;
+}
+
+.charges-loading-spinner {
+  width: 44px;
+  height: 44px;
+  border: 4px solid #dbeafe;
+  border-top-color: var(--color-primary);
+  border-radius: 50%;
+  animation: charges-spin 800ms linear infinite;
+}
+
+@keyframes charges-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 .charge-id-cell,
 .charge-status-cell {
   display: flex;

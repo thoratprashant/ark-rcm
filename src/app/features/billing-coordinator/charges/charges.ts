@@ -42,6 +42,7 @@ type Charge = {
 export class Charges implements AfterViewInit, OnDestroy {
   private sort?: MatSort;
   private paginator?: MatPaginator;
+  private filterTimer?: ReturnType<typeof setTimeout>;
 
   @ViewChild(MatSort)
   set matSort(sort: MatSort | undefined) {
@@ -59,8 +60,10 @@ export class Charges implements AfterViewInit, OnDestroy {
   protected readonly showListing = signal(false);
   protected readonly showSyncWarning = signal(false);
   protected readonly filtersOpen = signal(true);
+  protected readonly filtersLoading = signal(false);
+  protected readonly filtersApplied = signal(false);
   protected readonly displayedColumns = ['id', 'dateOfService', 'renderingPhysician', 'chargeValue', 'status', 'dateOfAdmission', 'actions'];
-  protected readonly dataSource = new MatTableDataSource<Charge>([
+  private readonly charges: Charge[] = [
     {
       id: 'CHG-98420',
       dateOfService: '2023-10-24',
@@ -119,7 +122,9 @@ export class Charges implements AfterViewInit, OnDestroy {
       status: 'Reviewed by Physician - Yes',
       dateOfAdmission: '2023-10-19',
     },
-  ]);
+  ];
+
+  protected readonly dataSource = new MatTableDataSource<Charge>(this.charges);
 
   protected dateRange = 'previous-week';
   protected renderingPhysician = 'all-multi';
@@ -140,6 +145,10 @@ export class Charges implements AfterViewInit, OnDestroy {
     if (this.warningTimer) {
       clearTimeout(this.warningTimer);
     }
+
+    if (this.filterTimer) {
+      clearTimeout(this.filterTimer);
+    }
   }
 
   protected showChargesListing(): void {
@@ -157,6 +166,15 @@ export class Charges implements AfterViewInit, OnDestroy {
 
   protected toggleFilters(): void {
     this.filtersOpen.update((open) => !open);
+  }
+
+  protected toggleFilterResults(): void {
+    if (this.filtersApplied()) {
+      this.resetFilters();
+      return;
+    }
+
+    this.applyFilters();
   }
 
   protected getStatusTone(status: ChargeStatus): string {
@@ -179,5 +197,33 @@ export class Charges implements AfterViewInit, OnDestroy {
     if (this.paginator) {
       this.dataSource.paginator = this.paginator;
     }
+  }
+
+  private applyFilters(): void {
+    if (this.filterTimer) {
+      clearTimeout(this.filterTimer);
+    }
+
+    this.filtersApplied.set(false);
+    this.filtersLoading.set(true);
+    this.dataSource.data = [];
+    this.paginator?.firstPage();
+
+    this.filterTimer = setTimeout(() => {
+      this.filtersLoading.set(false);
+      this.filtersApplied.set(true);
+      this.paginator?.firstPage();
+    }, 2000);
+  }
+
+  private resetFilters(): void {
+    if (this.filterTimer) {
+      clearTimeout(this.filterTimer);
+    }
+
+    this.filtersLoading.set(false);
+    this.filtersApplied.set(false);
+    this.dataSource.data = this.charges;
+    this.paginator?.firstPage();
   }
 }

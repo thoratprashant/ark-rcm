@@ -8,8 +8,8 @@ table.mat-mdc-table .mat-mdc-header-row {
   background: #edf2f7;
 }
 
-table.mat-mdc-table .mat-mdc-row:hover,
-table.mat-mdc-table .mat-mdc-row:active {
+table.mat-mdc-table .mat-mdc-row:not(.charges-empty-table-row):hover,
+table.mat-mdc-table .mat-mdc-row:not(.charges-empty-table-row):active {
   background: #f3f4f6;
   cursor: pointer;
 }

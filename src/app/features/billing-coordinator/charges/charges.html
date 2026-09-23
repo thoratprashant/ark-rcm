@@ -106,7 +106,9 @@
         </div>
 
         <div class="col-12  d-flex align-items-end justify-content-xl-end">
-          <button class="app-button app-button--primary charges-filters__apply" type="button">Apply Filters</button>
+          <button class="app-button app-button--primary charges-filters__apply" type="button" [disabled]="filtersLoading()" (click)="toggleFilterResults()">
+            {{ filtersApplied() ? 'Reset Filters' : 'Apply Filters' }}
+          </button>
         </div>
       </div>
     </section>
@@ -174,6 +176,22 @@
 
           <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
           <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+          <tr class="mat-row charges-empty-table-row" *matNoDataRow>
+            <td class="mat-cell charges-empty-table-cell" [attr.colspan]="displayedColumns.length">
+              @if (filtersLoading()) {
+              <div class="charges-loading-state" role="status" aria-live="polite">
+                <span class="charges-loading-spinner" aria-hidden="true"></span>
+                <strong>Applying filters</strong>
+              </div>
+              } @else if (filtersApplied()) {
+              <div class="charges-no-results" role="status" aria-live="polite">
+                <img class="charges-no-results__icon" src="assets/billing-coordinator/no-charges-found.svg" alt="" width="48" height="48" aria-hidden="true" />
+                <strong>No Charges found</strong>
+                <span>Try adjusting your filters or check back later.</span>
+              </div>
+              }
+            </td>
+          </tr>
         </table>
       </div>
 
@@ -197,6 +215,7 @@
         </button>
       </mat-menu>
 
+      @if (!filtersLoading() && !filtersApplied()) {
       <div class="charges-table-footer">
         <mat-paginator [length]="totalCharges" [pageSize]="7" [pageSizeOptions]="[7, 10, 25]" showFirstLastButtons
           aria-label="Charges pagination"></mat-paginator>
@@ -211,6 +230,7 @@
           <button class="app-button app-button--primary charges-export__button" type="button" disabled>Export</button>
         </div>
       </div>
+      }
     </section>
   </section>
   }
