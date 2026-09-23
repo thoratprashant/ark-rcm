@@ -9,7 +9,6 @@ type NavItem = {
   route?: string;
   badge?: string;
   badgeTone?: 'danger' | 'warning';
-  arrow?: boolean;
 };
 
 type NavSection = {
@@ -38,19 +37,19 @@ export class BillingCoordinatorLayout {
     {
       title: 'Charges & Claims',
       items: [
-        { label: 'Charges and Claims', icon: 'clipboard.svg', route: '/billing-coordinator/charges', arrow: true },
+        { label: 'Charges and Claims', icon: 'clipboard.svg', route: '/billing-coordinator/charges' },
         { label: 'Manager Hold', icon: 'clock.svg', badge: '14', badgeTone: 'danger' },
       ],
     },
     {
       title: 'Reviews',
-      items: [{ label: 'Dialysis Monthly', icon: 'calendar.svg', arrow: true }],
+      items: [{ label: 'Dialysis Monthly', icon: 'calendar.svg' }],
     },
     {
       title: 'Payment Posting',
       items: [
         { label: 'ERA Review', icon: 'dollar-sign.svg', badge: 'Pending', badgeTone: 'warning' },
-        { label: 'Unmatched ERA', icon: 'alert-circle.svg', arrow: true },
+        { label: 'Unmatched ERA', icon: 'alert-circle.svg' },
       ],
     },
     {
@@ -60,26 +59,26 @@ export class BillingCoordinatorLayout {
     {
       title: 'Accounts Receivable',
       items: [
-        { label: 'AR Aging', icon: 'bar-chart-2.svg', arrow: true },
-        { label: 'Negative AR', icon: 'minus-circle.svg', arrow: true },
+        { label: 'AR Aging', icon: 'bar-chart-2.svg' },
+        { label: 'Negative AR', icon: 'minus-circle.svg' },
       ],
     },
     {
       title: 'Insurance',
-      items: [{ label: 'Authorizations', icon: 'shield.svg', arrow: true }],
+      items: [{ label: 'Authorizations', icon: 'shield.svg' }],
     },
     {
       title: 'Time Of Service',
       items: [
-        { label: 'No-Show', icon: 'user-x.svg', arrow: true },
-        { label: 'Manual Charge', icon: 'plus-square.svg', arrow: true },
-        { label: 'Patient Invoices', icon: 'file-text.svg', arrow: true },
-        { label: 'EOB', icon: 'file.svg', arrow: true },
+        { label: 'No-Show', icon: 'user-x.svg' },
+        { label: 'Manual Charge', icon: 'plus-square.svg' },
+        { label: 'Patient Invoices', icon: 'file-text.svg' },
+        { label: 'EOB', icon: 'file.svg' },
       ],
     },
     {
       title: 'Reports',
-      items: [{ label: 'Reconciliation', icon: 'trending-up.svg', arrow: true }],
+      items: [{ label: 'Reconciliation', icon: 'trending-up.svg' }],
     },
   ];
 

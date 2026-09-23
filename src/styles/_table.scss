@@ -8,6 +8,12 @@ table.mat-mdc-table .mat-mdc-header-row {
   background: #edf2f7;
 }
 
+table.mat-mdc-table .mat-mdc-row:hover,
+table.mat-mdc-table .mat-mdc-row:active {
+  background: #f3f4f6;
+  cursor: pointer;
+}
+
 table.mat-mdc-table .mat-mdc-header-cell {
   border-bottom: 1px solid #e2e8f0;
   background: #edf2f7;
@@ -29,6 +35,11 @@ table.mat-mdc-table .mat-mdc-cell {
   font-weight: 400;
   padding-right: 8px;
   padding-left: 8px;
+}
+
+table.mat-mdc-table .mat-mdc-header-cell:first-child,
+table.mat-mdc-table .mat-mdc-cell:first-child {
+  padding-left: 20px;
 }
 
 table.mat-mdc-table .mat-sort-header-container {
@@ -81,9 +92,12 @@ table.mat-mdc-table .mat-sort-header-pointer-middle {
   display: none;
 }
 
-table.mat-mdc-table .mat-sort-header-sorted .mat-sort-header-content,
+table.mat-mdc-table .mat-sort-header-sorted .mat-sort-header-content {
+  color: inherit;
+}
+
 table.mat-mdc-table .mat-sort-header-sorted .mat-sort-header-arrow {
-  color: var(--color-primary);
+  color: #64748b;
 }
 
 .mat-mdc-paginator {
