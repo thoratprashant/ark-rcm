@@ -188,7 +188,6 @@
   width: 100%;
   min-width: 1160px;
   table-layout: fixed;
-  background: #ffffff;
 }
 
 .charges-table-shell th,
@@ -422,6 +421,35 @@
 @media (max-width: 1199.98px) {
   .charges-filters__body {
     max-height: 360px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .charges-table-scroll {
+    overflow-x: hidden;
+  }
+
+  .charges-table-shell table {
+    min-width: 100%;
+  }
+
+  .charges-table-shell .mat-column-id,
+  .charges-table-shell .mat-column-dateOfService,
+  .charges-table-shell .mat-column-dateOfAdmission {
+    width: 13%;
+  }
+
+  .charges-table-shell .mat-column-chargeValue {
+    width: 12%;
+  }
+
+  .charges-table-shell .mat-column-renderingPhysician,
+  .charges-table-shell .mat-column-status {
+    width: 21%;
+  }
+
+  .charges-table-shell .mat-column-actions {
+    width: 7%;
   }
 }
 
